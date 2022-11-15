@@ -5,7 +5,7 @@ export const getUserLocation = async(): Promise<[number, number]> => {
                 resolve([coords.longitude, coords.latitude])
             },
             (err) => {
-                alert("No se pudo obtener la geolocalización")
+                alert("we couldn't get the geolocation")
                 console.log(err)
                 reject()
             }

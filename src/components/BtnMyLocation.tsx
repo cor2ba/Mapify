@@ -7,9 +7,9 @@ export const BtnMyLocation = () => {
   const { userLocation } = useContext(PlacesContext);
 
   const onClick = () => {
-    if (!isMapReady) throw new Error("Mapa no esta listo");
+    if (!isMapReady) throw new Error("Map is not ready");
 
-    if (!userLocation) throw new Error("No hay ubicación de usuario");
+    if (!userLocation) throw new Error("No user location");
 
     map?.flyTo({
       zoom: 14,
@@ -23,7 +23,7 @@ export const BtnMyLocation = () => {
       className="btn"
       style={{ position: "fixed", top: "20px", right: "20px", zIndex: 999, backgroundColor: "#c4c4c4", color: "white" }}
     >
-      Mi ubicación
+      My location
     </button>
   );
 };
