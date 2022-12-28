@@ -1,5 +1,5 @@
-/*eslint import/no-webpack-loader-syntax: off*/ 
-import { useContext, useEffect, useReducer } from "react";
+/*eslint import/no-webpack-loader-syntax: off*/
+import { useContext, useEffect, useReducer, createContext } from "react";
 //@ts-ignore
 import { AnySourceData, LngLatBounds, Map, Marker, Popup } from "!mapbox-gl";
 import { MapContext } from "./MapContext";
@@ -24,6 +24,7 @@ interface Props {
 }
 
 export const MapProvider = ({ children }: Props) => {
+  
   const [state, dispatch] = useReducer(MapReducer, INITIAL_STATE);
   const { places } = useContext(PlacesContext);
 
@@ -49,11 +50,11 @@ export const MapProvider = ({ children }: Props) => {
   }, [places]);
 
   const setMap = (map: Map) => {
-    const myLocationPopup = new Popup().setHTML(`<h4>Aquí Estoy<h4/>`);
+    // const myLocationPopup = new Popup().setHTML(`<h3>My location<h3/>`);
 
     new Marker({ color: "red" })
       .setLngLat(map.getCenter())
-      .setPopup(myLocationPopup)
+      // .setPopup(myLocationPopup)
       .addTo(map);
 
     dispatch({ type: "setMap", payload: map });
@@ -105,25 +106,25 @@ export const MapProvider = ({ children }: Props) => {
         ],
       },
     };
-    if(state.map?.getLayer("RouteString")) {
-      state.map.removeLayer("RouteString")
-      state.map.removeSource("RouteString")
+    if (state.map?.getLayer("RouteString")) {
+      state.map.removeLayer("RouteString");
+      state.map.removeSource("RouteString");
     }
 
-    state.map?.addSource("RouteString", sourceData)
+    state.map?.addSource("RouteString", sourceData);
     state.map?.addLayer({
       id: "RouteString",
       type: "line",
       source: "RouteString",
       layout: {
         "line-cap": "round",
-        "line-join": "round"
+        "line-join": "round",
       },
       paint: {
         "line-color": "black",
-        "line-width": 3
-      }
-    })
+        "line-width": 3,
+      },
+    });
   };
 
   return (
