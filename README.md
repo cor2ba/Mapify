@@ -1,6 +1,6 @@
 # Mapify
 
-Podras ejecutar este proyecto ejecutando este comando en consola `npm start`.   
+Podras ejecutar este proyecto con los siguientes comandos en consola, `npm install` (instalar dependecias) luego `npm start` (levantar proyecto).   
 
 ### Mapify es una página que utiliza geolocalización, lo cual es un requisito para que la página funcione, gracias a esto puede saber tu ubicación y reflejarla en el mapa.
 
